@@ -18,7 +18,6 @@ phases:
           exit 1
         fi
       - cd "$(head -1 cwd.txt)"
-      - cd $WORK_DIR
       - ls -a
       - curl -fsSL https://get.pulumi.com | sh
       - export PATH=$PATH:$HOME/.pulumi/bin
