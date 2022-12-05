@@ -3,12 +3,15 @@ version: 0.2
 env:
   git-credential-helper: yes
 phases:
+  pre_install:
+    # Authorize git to access private repositories
+    commands:
+      - git config --global credential.helper '!aws codecommit credential-helper $@'
+      - git config --global credential.UseHttpPath true
+      - git config --global user.name "AWS CodeBuild"
+      - git-wrapper.sh $REPO_URL $REPO_BRANCH
   install:
     commands:
-      - curl -fsSL https://get.pulumi.com | sh
-      - export PATH=$PATH:$HOME/.pulumi/bin
-      - git log -1 --pretty=%B
-      - pulumi version
       - |
         COMMIT_MESSAGE=$(git log -1 --pretty=%B)
 
@@ -23,6 +26,10 @@ phases:
           echo "Folder $DATE does not exist"
           exit 1
         fi
+      - curl -fsSL https://get.pulumi.com | sh
+      - export PATH=$PATH:$HOME/.pulumi/bin
+      - git log -1 --pretty=%B
+      - pulumi version
       - yarn install --cwd=infra && yarn install --cwd=website
   pre_build:
     commands:
