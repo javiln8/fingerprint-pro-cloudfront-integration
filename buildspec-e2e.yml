@@ -11,14 +11,14 @@ phases:
         # Check if folder named with DATE exists
         if [ -d "$DATE" ]; then
           echo "Folder $DATE found"
-          export CWD=$DATE
+          export WORK_DIR=$DATE
           exit 0
         else
           echo "Folder $DATE does not exist"
           exit 1
         fi
-      - echo "Current working directory is $CWD"
-      - cd $CWD
+      - echo "Current working directory is $WORK_DIR"
+      - cd $WORK_DIR
       - ls -a
       - curl -fsSL https://get.pulumi.com | sh
       - export PATH=$PATH:$HOME/.pulumi/bin
