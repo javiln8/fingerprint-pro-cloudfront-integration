@@ -24,7 +24,7 @@ phases:
       - export PATH=$PATH:$HOME/.pulumi/bin
       - git log -1 --pretty=%B
       - pulumi version
-      - yarn install --cwd=infra && yarn install --cwd=website
+      - yarn install && yarn install --cwd=infra && yarn install --cwd=website
   pre_build:
     commands:
       - pwd
