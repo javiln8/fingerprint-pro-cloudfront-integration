@@ -3,15 +3,12 @@ version: 0.2
 env:
   git-credential-helper: yes
 phases:
-  pre_install:
-    # Authorize git to access private repositories
+  install:
     commands:
       - git config --global credential.helper '!aws codecommit credential-helper $@'
       - git config --global credential.UseHttpPath true
       - git config --global user.name "AWS CodeBuild"
       - git-wrapper.sh $REPO_URL $REPO_BRANCH
-  install:
-    commands:
       - |
         COMMIT_MESSAGE=$(git log -1 --pretty=%B)
 
