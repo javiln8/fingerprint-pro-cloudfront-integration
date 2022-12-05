@@ -18,6 +18,7 @@ phases:
           exit 1
         fi
       - cd "$(head -1 cwd.txt)"
+      - pwd
       - ls -a
       - curl -fsSL https://get.pulumi.com | sh
       - export PATH=$PATH:$HOME/.pulumi/bin
@@ -26,8 +27,8 @@ phases:
       - yarn install --cwd=infra && yarn install --cwd=website
   pre_build:
     commands:
+      - pwd
       - pulumi version
-      - yarn build
       - cd website && yarn build && cd ../
       - cd infra/lambda && pulumi stack init e2e && pulumi stack select e2e && cd ../../
       - cd infra/cloudfront && pulumi stack init e2e && pulumi stack select e2e && cd ../../
