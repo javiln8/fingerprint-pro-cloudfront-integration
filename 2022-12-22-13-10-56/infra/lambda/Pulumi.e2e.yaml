@@ -1,0 +1,4 @@
+encryptionsalt: v1:WgSTJezf+oQ=:v1:5iAN/NXSNg943+j/:5buc7jHG9tgQBG0j8yAO2cyjWJUrgg==
+config:
+  aws:region: us-east-1
+  lambda:org: fpjs

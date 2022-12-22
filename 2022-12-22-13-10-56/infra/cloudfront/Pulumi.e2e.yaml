@@ -1,0 +1,4 @@
+encryptionsalt: v1:PZjAbofSPyo=:v1:38Lr1/jZJZT9lev1:lij2Hq/T2e70Rk04vOp9yCXAgyrEKg==
+config:
+  aws:region: us-east-1
+  cloudfront:org: fpjs
